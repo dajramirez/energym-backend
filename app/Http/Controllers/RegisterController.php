@@ -9,7 +9,22 @@ class RegisterController extends Controller
 {
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required'|''
+        ])
+
         $user = User::create($request->all());
-        return response()->json(["message" => "Usuario guardado con éxito."]);
+
+        if ($user) {
+            return response()->json([
+                "success" => true,
+                "message" => "Usuario guardado con éxito."
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "El correo electrónico ya está en uso."
+        ]);
     }
 }
