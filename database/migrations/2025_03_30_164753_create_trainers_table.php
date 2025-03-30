@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('certification');
             $table->integer('years_experience');
             $table->text('bio')->nullable();
-            $table->json('availability')->nullable(); // [Monday: 9-12, Tuesday: 14-18, etc.]
+            $table->json('availability')->nullable(); // ['days' => ['Monday', 'Wednesday'], 'hours' => ['10:00-12:00', '14:00-16:00']]
             $table->timestamps();
         });
     }
