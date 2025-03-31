@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\GymClass;
 use App\Models\Trainer;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GymClassSeeder extends Seeder

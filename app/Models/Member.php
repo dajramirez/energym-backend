@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Member extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'membership_id',
@@ -16,7 +19,7 @@ class Member extends Model
         'dni',
         'phone',
         'emergency_phone',
-        'birthday',
+        'birthdate',
         'gender',
         'address',
         'health_notes',

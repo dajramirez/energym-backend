@@ -16,20 +16,22 @@ class MembershipFactory extends Factory
      */
     public function definition(): array
     {
-        $types = ['Basic', 'Premium', 'Gold', 'Student', 'Corporate'];
-
         return [
-            'name' => $this->faker->randomElement($types),
-            'description' => $this->faker->sentence,
-            'price' => $this->faker->numberBetween(30, 150),
-            'duration_days' => $this->faker->randomElement([30, 90, 180, 365]),
-            'features' => json_encode([
-                '24/7 Access',
-                'Free Classes',
-                'Personal Trainer Discount',
-                'Locker',
-            ]),
+            'name' => $this->faker->word() . ' Membership',
+            'description' => $this->faker->sentence(),
+            'price' => $this->faker->randomFloat(2, 50, 200),
+            'duration_days' => 30,
+            'features' => json_encode(['Basic access']),
             'active' => true,
         ];
+    }
+
+    public function inactive(): static
+    {
+        return $this->state([
+            'active' => false,
+            'name' => 'Old ' . $this->faker->word() . ' Membership',
+            'features' => json_encode(['Legacy access']),
+        ]);
     }
 }

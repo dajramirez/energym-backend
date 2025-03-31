@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Membership;
 
 class MembershipSeeder extends Seeder
 {
@@ -12,6 +12,8 @@ class MembershipSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = \Faker\Factory::create();
+
         $memberships = [
             [
                 'name' => 'Basic',
@@ -49,7 +51,49 @@ class MembershipSeeder extends Seeder
                     'Valid student ID required',
                 ],
                 'active' => true,
+            ],
+            [
+                'name' => 'Annual Gold',
+                'description' => 'Annual membership with maximun benefits',
+                'price' => 499.99,
+                'duration_days' => 365,
+                'features' => [
+                    '24/7 access',
+                    'Unlimited group classes',
+                    '2 personal training sessions per month',
+                    'Towel and locker included',
+                    'Supplements discounts',
+                ],
+                'active' => true,
+            ],
+            [
+                'name' => 'Couple',
+                'description' => 'Membership for couples',
+                'price' => 89.99,
+                'duration_days' => 30,
+                'features' => [
+                    'Standard access (6:00-23:00) for both members',
+                    '1 group class per week for each member',
+                    'Special activities discounts',
+                ],
+                'active' => true,
             ]
-        ]
+        ];
+
+        foreach ($memberships as $m) {
+            Membership::create([
+                'name' => $m['name'],
+                'description' => $m['description'],
+                'price' => $m['price'],
+                'duration_days' => $m['duration_days'],
+                'features' => json_encode($m['features']),
+                'active' => $m['active'],
+            ]);
+        }
+
+        Membership::factory()
+            ->count(2)
+            ->inactive()
+            ->create();
     }
 }

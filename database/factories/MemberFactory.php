@@ -18,7 +18,7 @@ class MemberFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::factory(),
-            'membership_id' => \App\Models\Membership::factory(),
+            'membership_id' => \App\Models\Membership::inRandomOrder()->first()?->id ?? null,
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'dni' => $this->faker->unique()->numerify('########'),

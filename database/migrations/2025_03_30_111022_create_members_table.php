@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('dni')->unique();
             $table->string('phone');
             $table->string('emergency_phone');
-            $table->date('birthday');
+            $table->date('birthdate');
             $table->enum('gender', ['male', 'female', 'other']);
             $table->text('address');
             $table->text('health_notes')->nullable();
